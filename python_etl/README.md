@@ -1,18 +1,18 @@
-# Python-based ETL of SynPUF data to CDMv5-compatible CSV files
+# Python-based ETL of Medicare LDS data to CDMv5-compatible CSV files
 
-This is an implementation of the SynPUF Extract-Transform-Load (ETL)
+This is an implementation of the Medicare LDS Extract-Transform-Load (ETL)
 specification designed to generate a set of CDMv5-compatible CSV files
 that can then be bulk-loaded into your RDBMS of choice.
 
-UNM Improvements branch: The programs have been modified and tested
-with CMS data DE_1 - DE_20 and are ready to be used by the general
+The programs have been modified and tested
+with 2018 Medicare LDS data and are ready to be used by the general
 public.
 
 ## Overview of Steps
 
 1) Install required software
 
-1. [Download SynPUF input data](#Download-SynPUF-input-data)
+1. [Download Medicare LDS input data](#Download-Medicare-LDS-input-data)
 
 1. [Download CDMv5 Vocabulary files](#Download-CDMv5-Vocabulary-Files)
 
@@ -64,25 +64,9 @@ Then to install python-dotenv, run the following command within the python\_etl 
 ``pip install -r requirements.txt``
 
 
-## Download SynPUF input data
+## Download Medicare LDS input data
 The SynPUF data is divided into 20 parts (8 files per part), and the files for each part should be saved in respective directories DE_1 through DE_20.
 They can either be downloaded with a python utility script or manually, described in the next two subsections.
-
-### Download using python script:
-
-In the ETL-CMS/scripts folder, there is a python program 'get_synpuf_files.py',
-which can be run to fetch one or more of the 20 SynPUF data sets. Run as follows:
-
-``python get_synpuf_files.py path/to/output/directory <SAMPLE> ... [SAMPLE] ``
-
-Where each SAMPLE is a number from 1 to 20, representing the 20 parts of the CMS data. If you only wanted to obtain
-samples 4 and 15, you would run:
-
-``python get_synpuf_files.py path/to/output/directory 4 15``
-
-To obtain all of the data, run:
-
-``python get_synpuf_files.py path/to/output/directory 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20``
 
 ### Manual download:
 Hyperlinks to the 20 parts can be found here:
@@ -99,10 +83,6 @@ DE1\_0\_2008\_to\_2010\_Prescription\_Drug\_Events\_Sample\_1.zip
 DE1\_0\_2009\_Beneficiary\_Summary\_File\_Sample\_1.zip  
 DE1\_0\_2010\_Beneficiary\_Summary\_File\_Sample\_1.zip  
 
-N.B.- If you are downloading the files manually from CMS website, you need to rename 'DE1_0_2008_to_2010_Carrier_Claims_Sample_11A.csv.zip'
-to 'DE1_0_2008_to_2010_Carrier_Claims_Sample_11A.zip'.
-Also, some zipped files have '.Copy.csv' file inside them. Rename those files from 'Copy.csv' to '.csv' after unzipping the zipped files.
-If you use the download script, you don't have to do all of these manual steps. The script will take care of all these.
 
 ## Download CDMv5 Vocabulary files
 Download vocabulary files from <http://www.ohdsi.org/web/athena/>, ensuring that you select at minimum, the following vocabularies:
