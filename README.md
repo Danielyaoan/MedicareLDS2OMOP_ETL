@@ -24,6 +24,12 @@ running the ETL, as well as creating and loading the data into a CDMv5 database.
 The WhiteRabbit/RabbitInAHat files used to develop the ETL specification, along with an out-of-date ETL specification in DOCX format.
 
 
+### DataQualityDashboard
+The assessment results derived from OHDSI DQD.
+
+![DQD Result](DQD-results.png)
+
+
 
 ### Additional Resources
 - [CMS-SynPuf-ETL-CDM](https://github.com/OHDSI/ETL-CMS/tree/master) convert the public Centers for Medicare & Medicaid Services (CMS) Data Entrepreneurs' Synthetic Public Use File (DE-SynPUF) to .csv files suitable for loading into an OMOP Common Data Model v5.2 database.
