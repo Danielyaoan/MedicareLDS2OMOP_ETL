@@ -21,7 +21,7 @@ running the ETL, as well as creating and loading the data into a CDMv5 database.
 
 
 ### RabbitInAHat
-The WhiteRabbit/RabbitInAHat files used to develop the ETL specification, along with an out-of-date ETL specification in DOCX format.
+The [WhiteRabbit/RabbitInAHat](https://ohdsi.github.io/WhiteRabbit/RabbitInAHat.html) files used to develop the ETL specification, along with an out-of-date ETL specification in DOCX format.
 
 
 ### DataQualityDashboard
