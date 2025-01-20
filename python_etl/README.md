@@ -31,11 +31,11 @@ Further instructions on how to set up the Postgres database can be found [here](
 
 ## Install required software
 
-The ETL process requires Python 2.7 with the python-dotenv package.
+The ETL process requires Python 3 with the python-dotenv package.
 
 ### Linux
 
-Python 2.7 and python-pip must be installed if they are not already
+Python 3 and python-pip must be installed if they are not already
 present. If you are using a RedHat distribution the following commands
 will work (you must have system administrator privileges):
 
@@ -48,40 +48,140 @@ run the following command to install the python-dotenv package:
 
 ``pip install -r requirements.txt``
 
-### Windows + Cygwin
-
-We have been able to run the ETL under Windows using cygwin, available at
-<https://www.cygwin.com>. Be sure to install the following packages
-with the cygwin installer:
-
-python  
-python-setuptools  
-
-After that run the following in order to install pip:  
-``easy_install-2.7 pip``
-
-Then to install python-dotenv, run the following command within the python\_etl folder:  
-``pip install -r requirements.txt``
-
 
 ## Download Medicare LDS input data
-The SynPUF data is divided into 20 parts (8 files per part), and the files for each part should be saved in respective directories DE_1 through DE_20.
-They can either be downloaded with a python utility script or manually, described in the next two subsections.
+Medicare Limited Data Sets (LDS) are de-identified datasets provided by the Centers for Medicare & Medicaid Services (CMS) for research purposes. These datasets contain detailed healthcare information but exclude direct identifiers to protect privacy. Medicare LDS data is not free and requires researchers to submit a Data Use Agreement (DUA) and a formal request to CMS. Additionally, there are associated fees based on the type and volume of data requested.
 
-### Manual download:
-Hyperlinks to the 20 parts can be found here:
-<https://www.cms.gov/Research-Statistics-Data-and-Systems/Downloadable-Public-Use-Files/SynPUFs/DE_Syn_PUF.html>
 
-For example for DE_1, create a directory called DE_1 and download the following files:
+### Types of Medicare LDS files: 
+For each individual files, make sure to put them under "\Data\medi\linked_ehr" directory with the year as main file name:
 
-DE1\_0\_2008\_Beneficiary\_Summary\_File\_Sample\_1.zip  
-DE1\_0\_2008\_to\_2010\_Carrier\_Claims\_Sample\_1A.zip  
-DE1\_0\_2008\_to\_2010\_Carrier\_Claims\_Sample\_1B.zip  
-DE1\_0\_2008\_to\_2010\_Inpatient\_Claims\_Sample\_1.zip  
-DE1\_0\_2008\_to\_2010\_Outpatient\_Claims\_Sample\_1.zip  
-DE1\_0\_2008\_to\_2010\_Prescription\_Drug\_Events\_Sample\_1.zip  
-DE1\_0\_2009\_Beneficiary\_Summary\_File\_Sample\_1.zip  
-DE1\_0\_2010\_Beneficiary\_Summary\_File\_Sample\_1.zip  
+- Medicare Beneficiary Data Files:
+  
+```
+\Data\medi\linked_ehr\2018\mbsf_abcd_summary
+  
+\Data\medi\linked_ehr\2018\mbsf_cc_summary
+```
+
+- Medicare Claims Data Files:
+  
+Inpatient Claims:
+
+```
+\Data\medi\linked_ehr\2018\inpatient_base_claims
+
+\Data\medi\linked_ehr\2018\inpatient_revenue_center
+
+\Data\medi\linked_ehr\2018\inpatient_condition_codes
+
+\Data\medi\linked_ehr\2018\inpatient_occurrnce_codes
+
+\Data\medi\linked_ehr\2018\inpatient_span_codes
+
+\Data\medi\linked_ehr\2018\inpatient_value_codes
+
+\Data\medi\linked_ehr\2018\inpatient_demo_codes
+```
+
+Outpatient Claims:
+
+```
+\Data\medi\linked_ehr\2018\outpatient_base_claims
+
+\Data\medi\linked_ehr\2018\outpatient_revenue_center
+
+\Data\medi\linked_ehr\2018\outpatient_condition_codes
+
+\Data\medi\linked_ehr\2018\outpatient_occurrnce_codes
+
+\Data\medi\linked_ehr\2018\outpatient_span_codes
+
+\Data\medi\linked_ehr\2018\outpatient_value_codes
+
+\Data\medi\linked_ehr\2018\outpatient_demo_codes
+```
+
+Carrier (Physician/Supplier Part B) Claims:
+
+```
+\Data\medi\linked_ehr\2018\bcarrier_claims
+
+\Data\medi\linked_ehr\2018\bcarrier_line
+
+\Data\medi\linked_ehr\2018\bcarrier_demo_codes
+```
+
+Skilled Nursing Facility (SNF) Claims:
+
+```
+\Data\medi\linked_ehr\2018\snf_base_claims
+
+\Data\medi\linked_ehr\2018\snf_revenue_center
+
+\Data\medi\linked_ehr\2018\snf_condition_codes
+
+\Data\medi\linked_ehr\2018\snf_occurrnce_codes
+
+\Data\medi\linked_ehr\2018\snf_span_codes
+
+\Data\medi\linked_ehr\2018\snf_value_codes
+
+\Data\medi\linked_ehr\2018\snf_demo_codes
+```
+
+Home Health Agency (HHA) Claims:
+
+```
+\Data\medi\linked_ehr\2018\hha_base_claims
+
+\Data\medi\linked_ehr\2018\hha_revenue_center
+
+\Data\medi\linked_ehr\2018\hha_condition_codes
+
+\Data\medi\linked_ehr\2018\hha_occurrnce_codes
+
+\Data\medi\linked_ehr\2018\hha_span_codes
+
+\Data\medi\linked_ehr\2018\hha_value_codes
+
+\Data\medi\linked_ehr\2018\hha_demo_codes
+```
+
+Hospice Claims:
+
+```
+\Data\medi\linked_ehr\2018\hospice_base_claims
+
+\Data\medi\linked_ehr\2018\hospice_revenue_center
+
+\Data\medi\linked_ehr\2018\hospice_condition_codes
+
+\Data\medi\linked_ehr\2018\hospice_occurrnce_codes
+
+\Data\medi\linked_ehr\2018\hospice_span_codes
+
+\Data\medi\linked_ehr\2018\hospice_value_codes
+
+\Data\medi\linked_ehr\2018\hospice_demo_codes
+```
+
+Durable Medical Equipment (DME) Claims:
+
+```
+\Data\medi\linked_ehr\2018\dme_claims
+
+\Data\medi\linked_ehr\2018\dme_line
+
+\Data\medi\linked_ehr\2018\dme_demo_codes
+```
+
+Part D Prescription Drug Event (PDE) File:
+
+```
+\Data\medi\linked_ehr\2018\pde_file
+```
+
 
 
 ## Download CDMv5 Vocabulary files
